@@ -3,7 +3,7 @@ use std::io;
 
 fn main() {
     let args: Vec<_> = env::args().collect();
-    if args.len() > 2 {
+    if args.len() == 3 {
         let unit: f32 = args[2].trim().parse().expect("Not a number");
 
         match args[1].as_str() {
@@ -11,13 +11,14 @@ fn main() {
             "-f" => println!("In celsius: {}", fah_to_cel(unit)),
             _ => println!("Usage is -c or -f"),
         }
-    }
-    else{
+    } else {
         let mut input = String::new();
         println!("Enter a number to convert it both to Celcius and Farhenhiet");
-        io::stdin().read_line(&mut input).expect("Failed to read line!");
+        io::stdin()
+            .read_line(&mut input)
+            .expect("Failed to read line!");
 
-        let input: f32= input.trim().parse().expect("Not a number");
+        let input: f32 = input.trim().parse().expect("Not a number");
 
         println!("In Fahrenhiet: {}", cel_to_fah(input));
         println!("In Celsius: {}", fah_to_cel(input));
